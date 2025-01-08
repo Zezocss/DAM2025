@@ -3,14 +3,24 @@ package com.example.appdam
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appdam.adapter.MainCategoryAdapter
 import com.example.appdam.adapter.SubCategoryAdapter
+import com.example.appdam.entidades.Categoria
 import com.example.appdam.entidades.Receitas
+import com.example.appdam.interfaces.GetDataService
+import com.example.appdam.retrofitclient.RetrofitClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import java.util.Locale
+import java.util.Locale.Category
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
     var arrMainCategory = ArrayList<Receitas>() //inicializar arrays and adapters
     var arrSubCategory = ArrayList<Receitas>() //inicializar arrays and adapters
     var mainCategoryAdapter = MainCategoryAdapter() //inicializar arrays and adapters
@@ -46,9 +56,33 @@ class MainActivity : AppCompatActivity() {
         rvSubCategory.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         rvSubCategory.adapter = subCategoryAdapter
 
+ //getCategorias para ir buscar data da api usando retrofit
+    fun getCategorias(){
+        val service = RetrofitClient.retrofitInstance.create(GetDataService::class.java)
+        val call = service.getCategoryList()
+        call.enqueue(object : Callback<List<Categoria>> {
 
+            override fun onFailure(p0: Call<List<Categoria>>, p1: Throwable) {
 
+                Toast.makeText(this@MainActivity, "Algo Correu Mal", Toast.LENGTH_SHORT).show()
+
+            }
+
+            override fun onResponse(
+                call: Call<List<Categoria>>,
+                response: Response<List<Categoria>>
+            ) {
+                insertDataIntoRoomDb(response.body())
+            }
+
+        })
+ }
+}
+    fun insertDataIntoRoomDb(categoria: List<Categoria>?){
 
     }
+
 }
+
+
 

@@ -18,7 +18,7 @@ data class Categoria(
 
     @ColumnInfo(name = "categoriasItens")
     @Expose
-    @SerializedName("categories")
+    @SerializedName("categorias")
     @TypeConverters(CategoriaConverter::class)
     val categoriasItens: List<CategoriaItens>? = null
 )

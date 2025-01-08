@@ -15,4 +15,6 @@ interface ReceitasDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertReceitas(receitas: Receitas)
+
+
 }

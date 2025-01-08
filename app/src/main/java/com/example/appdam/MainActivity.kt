@@ -47,6 +47,8 @@ class MainActivity : AppCompatActivity() {
         rvSubCategory.adapter = subCategoryAdapter
 
 
+
+
     }
 }
 

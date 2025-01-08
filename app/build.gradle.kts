@@ -5,6 +5,7 @@ plugins {
     id("kotlin-parcelize")
 }
 
+
 android {
     namespace = "com.example.appdam"
     compileSdk = 34
@@ -12,6 +13,7 @@ android {
     viewBinding{
         enable = true
     }
+
 
 
     defaultConfig {
@@ -49,6 +51,11 @@ android {
 
 }
 
+kapt {
+    correctErrorTypes = true
+}
+
+
 dependencies {
 
     implementation("androidx.core:core-ktx:1.9.0")
@@ -70,9 +77,9 @@ dependencies {
     implementation("com.intuit.sdp:sdp-android:1.0.6")
 
 //room database
-    implementation("androidx.room:room-runtime:2.2.5")
-    kapt ("androidx.room:room-compiler:2.2.5")
-    implementation("androidx.room:room-ktx:2.2.1")
+    implementation("androidx.room:room-runtime:2.5.2")
+    kapt("androidx.room:room-compiler:2.5.2")
+    implementation("androidx.room:room-ktx:2.5.2")
     implementation("com.makeramen:roundedimageview:2.3.0")
 
 
@@ -80,7 +87,7 @@ dependencies {
     implementation("pub.devrel:easypermissions:3.0.0")
 
 //coroutines core
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
 
     //retrofit
     implementation ("com.squareup.retrofit2:retrofit:2.11.0")

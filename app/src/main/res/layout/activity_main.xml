@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+    <!--tools:context=".MainActivity"
+    -->
+
+    <!--
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+    -->
+
+    <!-- Aqui comeca o codigo da Search bar e do "Todas as Receitas" -->
+
+    <!--    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12sp"
+            android:text="Todas as receitas"
+            android:textColor="@color/black"
+            android:textSize="31sp"
+            tools:ignore="HardcodedText" />
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12sp"
+                android:layout_marginStart="12sp"
+                android:layout_marginEnd="12sp"
+                app:cardCornerRadius="12sp"
+                app:cardElevation="12sp">
+
+
+            <SearchView
+                android:id="@+id/search_view"
+                android:layout_width="match_parent"
+                android:iconifiedByDefault="false"
+                android:background="@drawable/search"
+                android:queryHint="Procure receitas"
+                android:layout_height="wrap_content"/>
+
+        </androidx.cardview.widget.CardView>
+    -->
+    <!-- Aqui acaba o codigo da Search bar e do "Todas as Receitas" -->
+
+
+
+
+
+<!-- Aqui esta o codigo da imagem mais pequena com o nome do prato -->
+    <!--        <androidx.cardview.widget.CardView
+                android:layout_width="96sp"
+                android:layout_height="96sp"
+                app:cardBackgroundColor="@color/yellow"
+                android:layout_margin="12sp"
+                app:cardCornerRadius="12sp"
+                app:cardElevation="12sp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <ImageView
+                        android:layout_width="72sp"
+                        android:layout_height="72sp"
+                        android:id="@+id/img_dish"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="2sp"
+                        android:layout_marginEnd="2sp"
+                        android:src="@drawable/cat_img"/>
+
+                    <TextView
+                        android:id="@+id/tv_dish_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentStart="true"
+                        android:maxLines="2"
+                        android:maxEms="10"
+                        android:text="Prato"
+                        android:textSize="18sp"
+                        android:padding="18sp"
+                        android:textColor="@color/black" />
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
+-->
+<!-- Aqui acaba o codigo da imagem mais pequena com o nome do prato -->
+
+
+
+ <!-- Aqui está o código do Nome do Prato imagem e "Categorias" -->
+    <!--      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Categorias"
+          android:textSize="24sp"
+          android:textColor="@color/black"
+          android:padding="15sp" />
+
+
+              <androidx.cardview.widget.CardView
+                  android:layout_width="216sp"
+                  android:layout_height="312sp"
+                  android:layout_margin="12sp"
+                  app:cardCornerRadius="12sp"
+                  app:cardElevation="6sp">
+
+
+                  <ImageView
+                      android:id="@+id/img_dish1"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:scaleType="centerCrop"
+                      android:src="@drawable/cat_img" />
+
+              </androidx.cardview.widget.CardView>
+
+
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical">
+
+                  <TextView
+                      android:id="@+id/tv_dish_name1"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:text="Nome do Prato"
+                      android:textSize="16sp"
+                      android:textColor="@color/black"
+                      android:maxLines="2"
+                      android:paddingStart="15sp"/>
+
+
+
+              </LinearLayout>
+              -->
+   <!-- Aqui acaba código do Nome do Prato imagem e "Categorias" -->
+
+    <!--
+        </LinearLayout>
+        </ScrollView>
+    -->
+    </RelativeLayout>

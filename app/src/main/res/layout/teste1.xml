@@ -1,0 +1,63 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".MainActivity">
+
+    <!-- Título -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:text="Todas as receitas"
+        android:textColor="@color/black"
+        android:textSize="31sp"
+        tools:ignore="HardcodedText" />
+
+    <!-- CardView para SearchView -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="6dp">
+
+        <SearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:iconifiedByDefault="false"
+            android:background="@drawable/search"
+            android:queryHint="Procure receitas" />
+    </androidx.cardview.widget.CardView>
+
+    <!-- RecyclerView para a primeira lista -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_main_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        tools:itemCount="1"
+        tools:listitem="@layout/maindesign1" />
+
+    <!-- Título para categorias -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:text="Categorias"
+        android:textColor="@color/black"
+        android:textSize="24sp" />
+
+    <!-- RecyclerView para a segunda lista -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_sub_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        tools:itemCount="1"
+        tools:listitem="@layout/maindesign2" />
+</LinearLayout>

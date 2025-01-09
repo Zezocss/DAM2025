@@ -1,31 +1,32 @@
 package com.example.appdam.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.appdam.R
 import com.example.appdam.databinding.Maindesign1Binding
-import com.example.appdam.entidades.Receitas
+import com.example.appdam.entidades.CategoriaItens
+import com.bumptech.glide.Glide
+
+
 
 
 class MainCategoryAdapter: RecyclerView.Adapter<MainCategoryAdapter.RecipeViewHolder>() {
 
-
-    var arrMainCategory = ArrayList<Receitas>() //Maindesign1Binding é gerado automaticamente pelo maindesign1xml
+    var ctx: Context? = null
+    var arrMainCategory = ArrayList<CategoriaItens>() //Maindesign1Binding é gerado automaticamente pelo maindesign1xml
     class RecipeViewHolder(val binding: Maindesign1Binding) : RecyclerView.ViewHolder(binding.root) {
 
     }
 
-    fun setData(arrData : List<Receitas>){
-        arrMainCategory = arrData as ArrayList<Receitas>
+    fun setData(arrData: List<CategoriaItens>){
+        arrMainCategory = arrData as ArrayList<CategoriaItens>
     }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
-        val binding = Maindesign1Binding.inflate(LayoutInflater.from(parent.context),parent,false)
-
+        ctx = parent.context
+        val binding = Maindesign1Binding.inflate(LayoutInflater.from(parent.context), parent, false)
         return RecipeViewHolder(binding)
     }
 
@@ -35,11 +36,15 @@ class MainCategoryAdapter: RecyclerView.Adapter<MainCategoryAdapter.RecipeViewHo
     }
 
     override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) {
-        val recipe = arrMainCategory[position] // Obtemos o item atual da lista
-        holder.binding.tvDishName.text = recipe.dishName //
+            holder.binding.tvDishName.text = arrMainCategory[position].strCategory
+
+        //glide para mostrar imagens
+        Glide.with(ctx!!).load(arrMainCategory[position].strCategoryThumb).into(holder.binding.imgDish)
+        }
+
 
     }
-}
+
 
 
 

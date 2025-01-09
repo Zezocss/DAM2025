@@ -10,10 +10,6 @@ android {
     namespace = "com.example.appdam"
     compileSdk = 34
 
-    viewBinding{
-        enable = true
-    }
-
 
 
     defaultConfig {
@@ -90,7 +86,11 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
 
     //retrofit
-    implementation ("com.squareup.retrofit2:retrofit:2.11.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.11.0")
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    //glide
+    implementation("com.github.bumptech.glide:glide:4.15.1") // Última versão até Jan 2025
+    kapt("com.github.bumptech.glide:compiler:4.15.1")
 
 }

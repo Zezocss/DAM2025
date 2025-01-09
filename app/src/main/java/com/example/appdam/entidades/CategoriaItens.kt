@@ -6,8 +6,7 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-@Entity(tableName = "CategoriaItens")
-
+@Entity(tableName = "categoriaItens")
 data class CategoriaItens(
     @PrimaryKey(autoGenerate = true)
     var id:Int,

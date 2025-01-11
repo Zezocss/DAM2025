@@ -11,7 +11,6 @@ android {
     compileSdk = 34
 
 
-
     defaultConfig {
         applicationId = "com.example.appdam"
         minSdk = 24
@@ -20,7 +19,6 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
 
     }
 
@@ -93,4 +91,10 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.15.1") // Última versão até Jan 2025
     kapt("com.github.bumptech.glide:compiler:4.15.1")
 
+    //auth supabase
+    implementation("io.github.jan-tennert.supavase:gotrue-kt:1.3.2")
+    implementation("io.ktor:ktor-client-cio:2.3.4")
+
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
+    implementation("androidx.compose.material3:material3:1.1.2")
 }

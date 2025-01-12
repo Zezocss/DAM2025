@@ -84,6 +84,30 @@ class SupabaseAuthViewModel: ViewModel() {
         }
     }
 
+
+    fun isUserLoggedIn(
+        context: Context
+    ) {
+        viewModelScope.launch {
+            try {
+                val token = getToken(context)
+                if(token.isNullOrEmpty()){
+                    _userState.value = UserState.Error("User is not logged in!")
+                }else{
+                    client.gotrue.retrieveUser(token)
+                    client.gotrue.refreshCurrentSession()
+                    saveToken(context)
+                    _userState.value = UserState.Success("User is already logged in!")
+                }
+            } catch (e: Exception) {
+                _userState.value = UserState.Error("Error: ${e.message}")
+
+            }
+        }
+    }
+
+
+
 }
 
 

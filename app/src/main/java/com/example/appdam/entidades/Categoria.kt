@@ -15,9 +15,9 @@ data class Categoria(
     @PrimaryKey(autoGenerate = true)
     var id:Int,
 
-    @ColumnInfo(name = "categoriasItens")
+    @ColumnInfo(name = "categoriesItens")
     @Expose
-    @SerializedName("categorias")
+    @SerializedName("categories")
     @TypeConverters(CategoriaConverter::class)
-    val categoriasItens: List<CategoriaItens>? = null
+    val categories: List<CategoriaItens>? = null
 )

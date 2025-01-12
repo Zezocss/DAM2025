@@ -11,4 +11,5 @@
     <color name="orange">#FF6433</color>
     <color name="brown">#E1684528</color>
     <color name="grey">#E1A59D96</color>
+    <color name="transparent">#00000000</color>
 </resources>

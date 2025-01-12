@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 
 class MainCategoryAdapter: RecyclerView.Adapter<MainCategoryAdapter.RecipeViewHolder>() {
 
+    var listener: onItemClickListener? = null
     var ctx: Context? = null
     var arrMainCategory = ArrayList<CategoriaItens>() //Maindesign1Binding é gerado automaticamente pelo maindesign1xml
     class RecipeViewHolder(val binding: Maindesign1Binding) : RecyclerView.ViewHolder(binding.root) {
@@ -20,9 +21,14 @@ class MainCategoryAdapter: RecyclerView.Adapter<MainCategoryAdapter.RecipeViewHo
     }
 
     fun setData(arrData: List<CategoriaItens>){
-        arrMainCategory = arrData as ArrayList<CategoriaItens>
+        arrMainCategory.clear()
+        arrMainCategory.addAll(arrData)
+        notifyDataSetChanged()
     }
 
+    fun setClicklistener(listener1: onItemClickListener){
+        listener = listener1
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
         ctx = parent.context
@@ -40,7 +46,14 @@ class MainCategoryAdapter: RecyclerView.Adapter<MainCategoryAdapter.RecipeViewHo
 
         //glide para mostrar imagens
         Glide.with(ctx!!).load(arrMainCategory[position].strCategoryThumb).into(holder.binding.imgDish)
+        holder.itemView.rootView.setOnClickListener {
+            listener!!.onClicked(arrMainCategory[position].strCategory)
         }
+        }
+
+    interface onItemClickListener{
+        fun onClicked(categoryName:String)
+    }
 
 
     }

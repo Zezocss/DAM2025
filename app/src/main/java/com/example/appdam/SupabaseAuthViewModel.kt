@@ -13,6 +13,7 @@ import io.github.jan.supabase.gotrue.gotrue
 import io.github.jan.supabase.gotrue.providers.builtin.Email
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import utils.SharedPreferenceHelper
 
 class SupabaseAuthViewModel: ViewModel() {
     private val _userState = mutableStateOf<UserState>(UserState.Loading)
@@ -22,15 +23,79 @@ class SupabaseAuthViewModel: ViewModel() {
         context: Context,
         userEmail: String,
         userPassword: String,
-    ){
-        viewModelScope.launch { this: CoroutineScope
-            try{
-                client.gotrue.signUpWith(Email){ this: Email.Config
-
+    ) {
+        viewModelScope.launch {
+            try {
+                client.gotrue.signUpWith(Email) {
+                    email = userEmail
+                    password = userPassword
                 }
-            } catch (e: Exception){
+                saveToken(context)
+                _userState.value = UserState.Success("Registered user successfully!")
+            } catch (e: Exception) {
+                _userState.value = UserState.Error("Error: ${e.message}")
 
             }
         }
     }
+
+    private fun saveToken(context: Context) {
+        viewModelScope.launch {
+            val accessToken = client.gotrue.currentAccessTokenOrNull()
+            val sharedPref = SharedPreferenceHelper(context)
+            sharedPref.saveStringData("accessToken",accessToken)
+        }
+    }
+
+    private fun getToken(context: Context): String? {
+        val sharedPref = SharedPreferenceHelper(context)
+        return sharedPref.getStringData("accessToken")
+    }
+
+
+    fun login(
+        context: Context,
+        userEmail: String,
+        userPassword: String,
+    ) {
+        viewModelScope.launch {
+            try {
+                client.gotrue.signUpWith(Email) {
+                    email = userEmail
+                    password = userPassword
+                }
+                saveToken(context)
+                _userState.value = UserState.Success("Logged in successfully!")
+            } catch (e: Exception) {
+                _userState.value = UserState.Error("Error: ${e.message}")
+
+            }
+        }
+    }
+
+    fun logout() {
+        viewModelScope.launch {
+            try {
+                client.gotrue.logout()
+                _userState.value = UserState.Success("Logged out successfully!")
+            } catch (e: Exception) {
+                _userState.value = UserState.Error("Error: ${e.message}")
+            }
+        }
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

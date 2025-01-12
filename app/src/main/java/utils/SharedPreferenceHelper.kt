@@ -8,7 +8,7 @@ class SharedPreferenceHelper (private val context: Context){
         private const val MY_PREF_KEY = "MY_PREF"
     }
 
-    fun saveStringData(key: String, data: String){
+    fun saveStringData(key: String, data: String?){
         val sharedPreferences = context.getSharedPreferences(MY_PREF_KEY, Context.MODE_PRIVATE)
         sharedPreferences.edit().putString(key,data).apply()
     }

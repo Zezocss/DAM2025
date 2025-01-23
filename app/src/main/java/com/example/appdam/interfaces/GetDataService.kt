@@ -2,6 +2,7 @@ package com.example.appdam.interfaces
 
 import com.example.appdam.entidades.Categoria
 import com.example.appdam.entidades.Prato
+import com.example.appdam.entidades.PratoResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -13,6 +14,9 @@ interface GetDataService {
 
     @GET("filter.php")
     fun getMealList(@Query("c")categoria: String): Call<Prato>
+
+    @GET("lookup.php")
+    fun getSpecificItem(@Query("i") id: String): Call<PratoResponse>
 
 
 

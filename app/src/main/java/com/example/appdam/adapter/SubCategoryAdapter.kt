@@ -53,12 +53,12 @@ class SubCategoryAdapter: RecyclerView.Adapter<SubCategoryAdapter.RecipeViewHold
         Glide.with(ctx!!).load(arrSubCategory[position].strMealThumb).into(holder.binding.imgDish1)
 
         holder.itemView.rootView.setOnClickListener {
-            listener!!.onClicked(arrSubCategory[position].id)
+            listener!!.onClicked(arrSubCategory[position].idMeal)
 
         }
     }
         interface onItemClickListener {
-            fun onClicked(id:Int)
+            fun onClicked(id:String)
         }
     }
 

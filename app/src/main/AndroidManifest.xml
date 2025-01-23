@@ -15,7 +15,7 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/cook"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/cook"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppDam"
         tools:targetApi="31">
@@ -29,6 +29,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <activity android:name=".DetailActivity"
+            android:screenOrientation="locked"/>
+
     </application>
 
 </manifest>

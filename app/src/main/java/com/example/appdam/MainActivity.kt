@@ -59,7 +59,7 @@ class MainActivity : BaseActivity(), EasyPermissions.RationaleCallbacks, EasyPer
     }
 
     private val onClickedSubItens = object :SubCategoryAdapter.onItemClickListener{
-        override fun onClicked(id: Int) {
+        override fun onClicked(id: String) {
             var intent = Intent(this@MainActivity,DetailActivity::class.java)
             intent.putExtra("id",id)
             startActivity(intent)

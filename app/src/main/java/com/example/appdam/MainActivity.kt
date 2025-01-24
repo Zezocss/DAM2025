@@ -1,4 +1,3 @@
-// MainActivity.kt
 package com.example.appdam
 
 import android.content.Intent
@@ -16,7 +15,6 @@ import com.example.appdam.entidades.Categoria
 import com.example.appdam.entidades.CategoriaItens
 import com.example.appdam.entidades.Prato
 import com.example.appdam.entidades.PratosItens
-import com.example.appdam.entidades.Receitas
 import com.example.appdam.interfaces.GetDataService
 import com.example.appdam.retrofitclient.RetrofitClient
 import kotlinx.coroutines.CoroutineScope
@@ -39,41 +37,45 @@ class MainActivity : BaseActivity(), EasyPermissions.RationaleCallbacks, EasyPer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.teste1)
 
+        // Verificar se o usuário veio do RegisterActivity
+        if (!intent.getBooleanExtra("fromRegister", false)) {
+            Log.e("MainActivity", "Acesso negado: redirecionando para RegisterActivity.")
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+            finish()
+            return
+        }
+
+        setContentView(R.layout.teste1)
 
         Log.d("DEBUG_FLOW", "onCreate chamado")
         initializeRecyclerViews()
         readStorageTask()
         getDataFromDb()
 
-
         mainCategoryAdapter.setClicklistener(onClicked)
         subCategoryAdapter.setClicklistener(onClickedSubItens)
     }
 
-    private val onClicked = object :MainCategoryAdapter.onItemClickListener{
+    private val onClicked = object : MainCategoryAdapter.onItemClickListener {
         override fun onClicked(categoryName: String) {
             getPratoDataFromDb(categoryName)
         }
     }
 
-    private val onClickedSubItens = object :SubCategoryAdapter.onItemClickListener{
+    private val onClickedSubItens = object : SubCategoryAdapter.onItemClickListener {
         override fun onClicked(id: String) {
-            var intent = Intent(this@MainActivity,DetailActivity::class.java)
-            intent.putExtra("id",id)
+            val intent = Intent(this@MainActivity, DetailActivity::class.java)
+            intent.putExtra("id", id)
             startActivity(intent)
         }
     }
+
     private fun initializeRecyclerViews() {
-
-
         val rvMainCategory = findViewById<RecyclerView>(R.id.rv_main_category)
         rvMainCategory.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         rvMainCategory.adapter = mainCategoryAdapter
-
-
-
 
         val rvSubCategory = findViewById<RecyclerView>(R.id.rv_sub_category)
         rvSubCategory.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
@@ -98,7 +100,6 @@ class MainActivity : BaseActivity(), EasyPermissions.RationaleCallbacks, EasyPer
             )
         }
     }
-
 
     private fun hasReadStoragePermission(): Boolean {
         return EasyPermissions.hasPermissions(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -144,13 +145,13 @@ class MainActivity : BaseActivity(), EasyPermissions.RationaleCallbacks, EasyPer
                 ).show()
             }
 
-                    override fun onResponse(call: Call<Categoria>, response: Response<Categoria>) {
-                        if (response.isSuccessful && response.body() != null) {
-                            response.body()?.categories?.forEach { arr ->
-                                getPratos(arr.strCategory) // Adiciona lógica para tratar pratos principais
-                            }
-                                insertDataIntoRoomDb(response.body())
-                        } else {
+            override fun onResponse(call: Call<Categoria>, response: Response<Categoria>) {
+                if (response.isSuccessful && response.body() != null) {
+                    response.body()?.categories?.forEach { arr ->
+                        getPratos(arr.strCategory) // Adiciona lógica para tratar pratos principais
+                    }
+                    insertDataIntoRoomDb(response.body())
+                } else {
                     Toast.makeText(
                         this@MainActivity, "Erro na resposta da API. Código ${response.code()}",
                         Toast.LENGTH_SHORT
@@ -159,23 +160,27 @@ class MainActivity : BaseActivity(), EasyPermissions.RationaleCallbacks, EasyPer
             }
         })
     }
-    private fun getPratos(categoriaName:String) {
+
+    private fun getPratos(categoriaName: String) {
         val service = RetrofitClient.retrofitInstance.create(GetDataService::class.java)
         val call = service.getMealList(categoriaName)
 
         call.enqueue(object : Callback<Prato> {
             override fun onFailure(call: Call<Prato>, t: Throwable) {
-                Toast.makeText(this@MainActivity, "Erro ao conectar ao servidor. Verifica a tua conexão.",
+                Toast.makeText(
+                    this@MainActivity, "Erro ao conectar ao servidor. Verifica a tua conexão.",
                     Toast.LENGTH_SHORT
                 ).show()
             }
+
             override fun onResponse(call: Call<Prato>, response: Response<Prato>) {
                 if (response.isSuccessful && response.body() != null) {
                     Log.d("API_RESPONSE", "Pratos recebidos: ${response.body()?.pratosItens}")
-                    insertPratoDataIntoRoomDb(categoriaName,response.body()) // Passa os dados para o banco de dados
+                    insertPratoDataIntoRoomDb(categoriaName, response.body()) // Passa os dados para o banco de dados
                 } else {
                     Log.e("API_RESPONSE", "Erro na API: ${response.code()} - ${response.message()}")
-                    Toast.makeText(this@MainActivity, "Erro na resposta da API. Código ${response.code()}",
+                    Toast.makeText(
+                        this@MainActivity, "Erro na resposta da API. Código ${response.code()}",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -183,21 +188,11 @@ class MainActivity : BaseActivity(), EasyPermissions.RationaleCallbacks, EasyPer
         })
     }
 
-
-
-
-
-
-
-    /////////////////////////////////////////////////////////
-
-
     private fun insertDataIntoRoomDb(categoria: Categoria?) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
-
                 // Insere as categorias no banco de dados
-                categoria?.categories?.forEach { arr -> // Mude para 'categories'
+                categoria?.categories?.forEach { arr ->
                     ReceitasDatabase.getDatabase(this@MainActivity).receitasDao().insertCategoria(arr)
                     Log.d("DEBUG_DB", "Categoria inserida: $arr")
                 }
@@ -212,16 +207,13 @@ class MainActivity : BaseActivity(), EasyPermissions.RationaleCallbacks, EasyPer
         }
     }
 
-
-    private fun insertPratoDataIntoRoomDb(categoriaName: String,prato: Prato?) {
+    private fun insertPratoDataIntoRoomDb(categoriaName: String, prato: Prato?) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
-
-
                 // Insere as categorias no banco de dados
-                prato?.pratosItens?.forEach { arr -> // Mude para 'categories'
+                prato?.pratosItens?.forEach { arr ->
                     Log.d("DATABASE_INSERT", "Prato a ser salvo: $arr")
-                    var pratoItemModel = PratosItens(
+                    val pratoItemModel = PratosItens(
                         arr.id,
                         arr.idMeal,
                         categoriaName,
@@ -242,20 +234,17 @@ class MainActivity : BaseActivity(), EasyPermissions.RationaleCallbacks, EasyPer
         }
     }
 
-
     private fun clearDatabase() {
-            CoroutineScope(Dispatchers.IO).launch {
-                try {
-
-                    // Limpa o banco de dados
-                    ReceitasDatabase.getDatabase(this@MainActivity).receitasDao().clearDb()
-                    Log.d("DEBUG_DB", "Base de dados limpa.")
-
-                } catch (e: Exception) {
-                    Log.e("DEBUG_DB", "Erro ao carregar dados do banco: ${e.message}")
-                }
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                // Limpa o banco de dados
+                ReceitasDatabase.getDatabase(this@MainActivity).receitasDao().clearDb()
+                Log.d("DEBUG_DB", "Base de dados limpa.")
+            } catch (e: Exception) {
+                Log.e("DEBUG_DB", "Erro ao carregar dados do banco: ${e.message}")
             }
         }
+    }
 
     private fun getDataFromDb() {
         CoroutineScope(Dispatchers.IO).launch {
@@ -276,7 +265,7 @@ class MainActivity : BaseActivity(), EasyPermissions.RationaleCallbacks, EasyPer
         }
     }
 
-    private fun getPratoDataFromDb(categoryName:String) {
+    private fun getPratoDataFromDb(categoryName: String) {
         val tvCategory = findViewById<TextView>(R.id.tvCategory)
         tvCategory.text = "$categoryName categoria"
         CoroutineScope(Dispatchers.IO).launch {
@@ -297,10 +286,4 @@ class MainActivity : BaseActivity(), EasyPermissions.RationaleCallbacks, EasyPer
             }
         }
     }
-    }
-
-
-
-
-
-
+}

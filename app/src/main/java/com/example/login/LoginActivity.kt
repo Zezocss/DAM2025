@@ -31,6 +31,12 @@ class LoginActivity : AppCompatActivity() {
             val password = findViewById<EditText>(R.id.editTextPassword).text.toString()
             loginUser(username, password)
         }
+
+        // Botão de Registro
+        val registerButton = findViewById<Button>(R.id.buttonRegister)
+        registerButton.setOnClickListener {
+            goToRegister()
+        }
     }
 
     private fun loginUser(username: String, password: String) {
@@ -57,5 +63,10 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this@LoginActivity, "Erro: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun goToRegister() {
+        val intent = Intent(this, RegisterActivity::class.java)
+        startActivity(intent)
     }
 }

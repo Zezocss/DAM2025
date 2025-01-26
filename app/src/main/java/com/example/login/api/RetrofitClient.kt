@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
-    private const val BASE_URL = "http://<URL_DA_API>" // Substitua pela URL hospedada no Render
+    private const val BASE_URL = "https://dam2025.onrender.com/" // Substitua pela URL hospedada no Render
 
     private val loggingInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY

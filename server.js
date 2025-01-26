@@ -5,8 +5,8 @@ const bcrypt = require('bcryptjs');
 
 // Configuração do servidor
 const app = express();
-const PORT = 3000;
-const SECRET_KEY = 'minha_chave_secreta';
+const PORT = process.env.PORT || 3000; // Porta dinâmica para Render
+const SECRET_KEY = process.env.SECRET_KEY || 'minha_chave_secreta'; // Suporte para variável de ambiente SECRET_KEY
 
 // Middleware
 app.use(bodyParser.json());
@@ -55,5 +55,5 @@ app.post('/login', async (req, res) => {
 
 // Iniciar o servidor
 app.listen(PORT, () => {
-    console.log(`Servidor rodando em http://localhost:${PORT}`);
+    console.log(`Servidor rodando na porta ${PORT}`);
 });

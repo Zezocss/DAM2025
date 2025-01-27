@@ -7,7 +7,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-//trabalha com o link do retrofit e diz a qual ir buscar data
+//trabalha com o link do retrofit e diz a qual ir buscar dados
 interface GetDataService {
     @GET("categories.php")
     fun getCategoryList(): Call<Categoria>

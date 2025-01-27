@@ -20,9 +20,9 @@
         android:theme="@style/Theme.AppDam"
         tools:targetApi="31">
 
-        <!-- RegisterActivity configurada como tela inicial -->
+        <!-- LoginActivity configurada como tela inicial -->
         <activity
-            android:name=".RegisterActivity"
+            android:name=".LoginActivity"
             android:screenOrientation="locked"
             android:exported="true">
             <intent-filter>
@@ -31,7 +31,13 @@
             </intent-filter>
         </activity>
 
-        <!-- MainActivity configurada para navegação -->
+        <!-- RegisterActivity -->
+        <activity
+            android:name=".RegisterActivity"
+            android:screenOrientation="locked"
+            android:exported="true" />
+
+        <!-- MainActivity -->
         <activity
             android:name=".MainActivity"
             android:screenOrientation="locked"

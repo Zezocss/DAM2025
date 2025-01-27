@@ -90,8 +90,11 @@ dependencies {
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
 
     //glide
-    implementation("com.github.bumptech.glide:glide:4.15.1") // Última versão até Jan 2025
+    implementation("com.github.bumptech.glide:glide:4.15.1")
     kapt("com.github.bumptech.glide:compiler:4.15.1")
+
+    // Logging Interceptor
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.10.0")
 
 
 

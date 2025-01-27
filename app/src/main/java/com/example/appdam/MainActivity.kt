@@ -17,6 +17,7 @@ import com.example.appdam.entidades.Prato
 import com.example.appdam.entidades.PratosItens
 import com.example.appdam.interfaces.GetDataService
 import com.example.appdam.retrofitclient.RetrofitClient
+import com.example.appdam.utils.SharedPreferencesHelper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -30,6 +31,7 @@ import retrofit2.Response
 class MainActivity : BaseActivity(), EasyPermissions.RationaleCallbacks, EasyPermissions.PermissionCallbacks {
     private var READ_STORAGE_PERM = 123
 
+    private lateinit var sharedPreferencesHelper: SharedPreferencesHelper
     var arrMainCategory = ArrayList<CategoriaItens>()
     var arrSubCategory = ArrayList<PratosItens>()
     var mainCategoryAdapter = MainCategoryAdapter()
@@ -37,17 +39,23 @@ class MainActivity : BaseActivity(), EasyPermissions.RationaleCallbacks, EasyPer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.teste1)
 
-        // Verificar se o usuário veio do RegisterActivity
-        if (!intent.getBooleanExtra("fromRegister", false)) {
-            Log.e("MainActivity", "Acesso negado: redirecionando para RegisterActivity.")
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
-            finish()
-            return
+        // Inicializa o SharedPreferencesHelper
+        sharedPreferencesHelper = SharedPreferencesHelper(this)
+
+        // Verifica se o usuário está logado
+        val token = sharedPreferencesHelper.getToken()
+        if (!token.isNullOrEmpty()) {
+            // Se o token existe, exibe uma mensagem de boas-vindas
+            Toast.makeText(this, "Bem-vindo de volta!", Toast.LENGTH_SHORT).show()
+        } else {
+            // Se não houver token, redireciona para a LoginActivity
+            Toast.makeText(this, "Token não encontrado. Faça login novamente.", Toast.LENGTH_SHORT).show()
+            redirectToLogin()
         }
 
-        setContentView(R.layout.teste1)
+
 
         Log.d("DEBUG_FLOW", "onCreate chamado")
         initializeRecyclerViews()
@@ -70,6 +78,13 @@ class MainActivity : BaseActivity(), EasyPermissions.RationaleCallbacks, EasyPer
             intent.putExtra("id", id)
             startActivity(intent)
         }
+    }
+
+    private fun redirectToLogin() {
+        sharedPreferencesHelper.clearToken()
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private fun initializeRecyclerViews() {

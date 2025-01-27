@@ -1,100 +1,61 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".RegisterActivity">
+    android:orientation="vertical"
+    android:padding="16dp">
 
-    <LinearLayout
+    <EditText
+        android:id="@+id/editTextFirstName"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_height="48dp"
+        android:hint="@string/hint_first_name"
+        android:autofillHints="givenName"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
 
-        <!-- Nome -->
-        <EditText
-            android:id="@+id/firstNameText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Primeiro Nome"
-            android:inputType="textPersonName"
-            android:padding="12dp" />
+    <EditText
+        android:id="@+id/editTextLastName"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="@string/hint_last_name"
+        android:autofillHints="familyName"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
 
-        <!-- Sobrenome -->
-        <EditText
-            android:id="@+id/lastNameText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Sobrenome"
-            android:inputType="textPersonName"
-            android:padding="12dp"
-            android:layout_marginTop="8dp" />
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="@string/hint_email"
+        android:autofillHints="emailAddress"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
 
-        <!-- Email -->
-        <EditText
-            android:id="@+id/emailText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:padding="12dp"
-            android:layout_marginTop="8dp" />
+    <EditText
+        android:id="@+id/editTextUsername"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="@string/hint_username"
+        android:autofillHints="username"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
 
-        <!-- Nome de usuário -->
-        <EditText
-            android:id="@+id/usernameText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nome de Usuário"
-            android:inputType="text"
-            android:padding="12dp"
-            android:layout_marginTop="8dp" />
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="@string/hint_password"
+        android:autofillHints="password"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:inputType="textPassword" />
 
-        <!-- Senha -->
-        <EditText
-            android:id="@+id/passwordText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Senha"
-            android:inputType="textPassword"
-            android:padding="12dp"
-            android:layout_marginTop="8dp" />
-
-        <!-- Switch de Gênero -->
-        <Switch
-            android:id="@+id/genderSwitch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Gênero" />
-
-        <TextView
-            android:id="@+id/genderTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Feminino"
-            android:layout_marginTop="8dp" />
-
-        <!-- Botão de Registro -->
-        <Button
-            android:id="@+id/registerButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Registrar"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/grey" />
-
-        <!-- Link para Login -->
-        <TextView
-            android:id="@+id/loginLink"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Já tem uma conta? Faça login"
-            android:textColor="@color/black"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp" />
-
-    </LinearLayout>
-</ScrollView>
+    <Button
+        android:id="@+id/buttonRegister"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="@string/register"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/white" />
+</LinearLayout>

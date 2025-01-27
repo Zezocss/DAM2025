@@ -17,6 +17,7 @@
         android:textSize="31sp"
         tools:ignore="HardcodedText" />
 
+        
     <!-- CardView para SearchView -->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.appdam.models.LoginRequest
 import com.example.appdam.models.LoginResponse
 import com.example.appdam.utils.SharedPreferencesHelper
-import com.example.login.RegisterActivity
+import com.example.appdam.RegisterActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

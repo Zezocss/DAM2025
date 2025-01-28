@@ -1,4 +1,4 @@
-package com.example.appdam.api
+package com.example.appdam.auth
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

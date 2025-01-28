@@ -6,9 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.appdam.LoginActivity
-import com.example.appdam.R
-import com.example.appdam.api.RetrofitAuth
+import com.example.appdam.auth.RetrofitAuth
 import com.example.appdam.models.RegisterRequest
 import retrofit2.Call
 import retrofit2.Callback

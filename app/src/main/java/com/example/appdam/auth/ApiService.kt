@@ -1,4 +1,4 @@
-package com.example.appdam.api
+package com.example.appdam.auth
 
 import com.example.appdam.models.LoginRequest
 import com.example.appdam.models.LoginResponse

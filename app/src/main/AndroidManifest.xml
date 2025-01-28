@@ -43,6 +43,18 @@
             android:screenOrientation="locked"
             android:exported="true" />
 
+        <activity
+            android:name=".MenuActivity"
+            android:screenOrientation="locked"
+            android:exported="true" />
+
+
+        <activity
+            android:name=".ReceitasActivity"
+            android:screenOrientation="locked"
+            android:exported="true" />
+
+
         <!-- DetailActivity -->
         <activity
             android:name=".DetailActivity"

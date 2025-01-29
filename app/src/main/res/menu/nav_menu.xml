@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+
+    <item android:title="Ver Receitas">
+        <menu>
+
+            <item
+                android:id="@+id/nav_receitas"
+                android:icon="@drawable/food"
+                android:title="Receitas"/>
+
+        </menu>
+
+    </item>
+
+    <item android:title="Adicionar Comentario">
+        <menu>
+
+            <item
+                android:id="@+id/nav_comentarios"
+                android:icon="@drawable/comentario"
+                android:title="Comentarios"/>
+
+        </menu>
+
+    </item>
+
+    <item android:title="Informações">
+        <menu>
+
+            <item
+                android:id="@+id/nav_info"
+                android:icon="@drawable/info"
+                android:title="Sobre Nós"/>
+
+        </menu>
+
+    </item>
+
+
+    <item android:title="Perfil">
+    <menu>
+
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/logout"
+            android:title="Sair"/>
+
+
+    </menu>
+
+    </item>
+</menu>

@@ -2,4 +2,29 @@
     <string name="app_name">AppDam</string>
     <string name="dish_name">Nome do Prato</string>
 
+        <!-- Strings para a tela de Login -->
+        <string name="login_title">Entrar</string>
+        <string name="hint_username">Nome de Utilizador</string>
+        <string name="hint_password">Senha</string>
+        <string name="button_login">Entrar</string>
+        <string name="button_register_redirect">Registar-se</string>
+        <string name="login_error_empty_fields">Por favor, preencha todos os campos.</string>
+        <string name="login_success">Login bem-sucedido!</string>
+        <string name="login_failed">Erro no login. Verifique suas credenciais.</string>
+
+        <!-- Strings para a tela de Register -->
+        <string name="register_title">Registar-se</string>
+        <string name="register">Registrar</string>
+
+        <string name="hint_first_name">Primeiro Nome</string>
+        <string name="hint_last_name">Último Nome</string>
+        <string name="hint_email">Email</string>
+        <string name="button_register">Registrar</string>
+    <string name="navigation_drawer_open">Abrir menu</string>
+    <string name="navigation_drawer_close">Fechar menu</string>
+        <string name="register_error_empty_fields">Preencha todos os campos!</string>
+        <string name="register_success">Registo bem-sucedido!</string>
+        <string name="register_failed">Erro no registo. Tente novamente.</string>
+
+
 </resources>

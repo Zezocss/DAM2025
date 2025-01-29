@@ -36,7 +36,7 @@ class MenuActivity : AppCompatActivity() {
                     startActivity(Intent(this, ReceitasActivity::class.java))
                 }
                 R.id.nav_info -> {
-                    startActivity(Intent(this, ReceitasActivity::class.java))
+                    startActivity(Intent(this, AboutActivity::class.java))
                 }
                 R.id.nav_logout -> {
                     val sharedPref = getSharedPreferences("user_prefs", MODE_PRIVATE)

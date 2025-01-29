@@ -60,5 +60,7 @@
             android:name=".DetailActivity"
             android:screenOrientation="locked" />
 
+        <activity android:name=".AboutActivity" />
+
     </application>
 </manifest>

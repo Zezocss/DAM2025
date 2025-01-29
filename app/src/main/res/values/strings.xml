@@ -20,6 +20,8 @@
         <string name="hint_last_name">Último Nome</string>
         <string name="hint_email">Email</string>
         <string name="button_register">Registrar</string>
+    <string name="navigation_drawer_open">Abrir menu</string>
+    <string name="navigation_drawer_close">Fechar menu</string>
         <string name="register_error_empty_fields">Preencha todos os campos!</string>
         <string name="register_success">Registo bem-sucedido!</string>
         <string name="register_failed">Erro no registo. Tente novamente.</string>

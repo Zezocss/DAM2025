@@ -4,8 +4,11 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appdam.adapter.MainCategoryAdapter
@@ -19,6 +22,8 @@ import com.example.appdam.interfaces.GetDataService
 import com.example.appdam.retrofitclient.RetrofitClient
 import com.example.appdam.utils.SharedPreferencesHelper
 import com.example.appdam.MenuActivity
+import com.example.appdam.databinding.ActivityMainBinding
+import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -38,16 +43,53 @@ class ReceitasActivity : BaseActivity(), EasyPermissions.RationaleCallbacks, Eas
     var mainCategoryAdapter = MainCategoryAdapter()
     var subCategoryAdapter = SubCategoryAdapter()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.teste1)
 
+        // Configura o layout com o DrawerLayout
+        setupDrawer(R.layout.teste1)
 
+        // Configura o botão para abrir o menu lateral
+        val openMenuButton: ImageButton = findViewById(R.id.open_menu_button)
+        openMenuButton.setOnClickListener {
+            drawerLayout.openDrawer(GravityCompat.START)
+        }
+
+        // Configura o NavigationView para gerenciar as opções do menu lateral
+        val navView: NavigationView = findViewById(R.id.nav_view)
+        navView.setNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.nav_receitas -> {
+                    Toast.makeText(this, "Já está na página de receitas!", Toast.LENGTH_SHORT).show()
+                }
+                R.id.nav_comentarios -> {
+                    startActivity(Intent(this, ReceitasActivity::class.java))
+                }
+                R.id.nav_info -> {
+                    startActivity(Intent(this, ReceitasActivity::class.java))
+                }
+                R.id.nav_logout -> {
+                    val sharedPref = getSharedPreferences("user_prefs", MODE_PRIVATE)
+                    sharedPref.edit().clear().apply()
+                    Toast.makeText(this, "Logout realizado com sucesso!", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
+                }
+            }
+            drawerLayout.closeDrawers()
+            true
+        }
+
+        // Debug para verificar o fluxo de execução
         Log.d("DEBUG_FLOW", "onCreate chamado")
+
+        // Inicializa os RecyclerViews e carrega os dados
         initializeRecyclerViews()
         readStorageTask()
         getDataFromDb()
 
+        // Configura os listeners para cliques nos adapters
         mainCategoryAdapter.setClicklistener(onClicked)
         subCategoryAdapter.setClicklistener(onClickedSubItens)
     }

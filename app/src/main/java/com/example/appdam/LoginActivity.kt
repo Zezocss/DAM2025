@@ -13,6 +13,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import com.example.appdam.auth.RetrofitAuth
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class LoginActivity : AppCompatActivity() {
 
@@ -24,12 +25,23 @@ class LoginActivity : AppCompatActivity() {
 
         sharedPreferencesHelper = SharedPreferencesHelper(this)
 
+        // Verifica se a política já foi aceite, caso contrário mostra o diálogo
+        if (!sharedPreferencesHelper.isPrivacyPolicyAccepted()) {
+            mostrarDialogoDeConsentimento()
+        }
+
         // Botão de Login
         val loginButton = findViewById<Button>(R.id.buttonLogin)
         loginButton.setOnClickListener {
             val username = findViewById<EditText>(R.id.editTextUsername).text.toString()
             val password = findViewById<EditText>(R.id.editTextPassword).text.toString()
             loginUser(username, password)
+        }
+
+        // Adiciona funcionalidade de clique longo ao botão de login para redefinir a política
+        loginButton.setOnLongClickListener {
+            redefinirPoliticaPrivacidade()
+            true
         }
 
         // Botão de Registro
@@ -69,4 +81,34 @@ class LoginActivity : AppCompatActivity() {
         val intent = Intent(this, RegisterActivity::class.java)
         startActivity(intent)
     }
+
+    private fun mostrarDialogoDeConsentimento() {
+        MaterialAlertDialogBuilder(this)
+            .setTitle("Aviso de Privacidade")
+            .setMessage(
+                "A sua privacidade é importante para nós. Os seus dados pessoais são usados apenas para garantir o correto funcionamento da aplicação." +
+                        "As informações nunca serão partilhadas com terceiros. Implementamos medidas de segurança para proteger os dados de acessos não autorizados. " +
+                        "Ao utilizar a aplicação, está a concordar com esta política. Pode redefinir a aceitação da política nas definições da app."
+            )
+            .setCancelable(false) // Não permite fechar sem interagir
+            .setPositiveButton("Aceitar") { _, _ ->
+                sharedPreferencesHelper.savePrivacyPolicyAccepted()
+                Toast.makeText(this, "Política de Privacidade aceite!", Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton("Recusar") { _, _ ->
+                terminarAplicacao()
+            }
+            .show()
+    }
+
+    private fun redefinirPoliticaPrivacidade() {
+        sharedPreferencesHelper.resetPrivacyPolicy()
+        Toast.makeText(this, "Política de Privacidade foi redefinida!", Toast.LENGTH_SHORT).show()
+        mostrarDialogoDeConsentimento()
+    }
+
+    private fun terminarAplicacao() {
+        finish() // Fecha a aplicação completamente
+    }
 }
+

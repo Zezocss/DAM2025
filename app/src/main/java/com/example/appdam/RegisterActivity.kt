@@ -8,15 +8,20 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.appdam.auth.RetrofitAuth
 import com.example.appdam.models.RegisterRequest
+import com.example.appdam.utils.SharedPreferencesHelper
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class RegisterActivity : AppCompatActivity() {
 
+    private lateinit var sharedPreferencesHelper: SharedPreferencesHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+
+        sharedPreferencesHelper = SharedPreferencesHelper(this)
 
         val registerButton = findViewById<Button>(R.id.buttonRegister)
         registerButton.setOnClickListener {
@@ -35,6 +40,8 @@ class RegisterActivity : AppCompatActivity() {
         RetrofitAuth.instance.registerUser(registerRequest).enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.isSuccessful) {
+                    // Salvar o nome completo
+                    sharedPreferencesHelper.saveUserName("$firstName $lastName")
                     Toast.makeText(this@RegisterActivity, "Registro bem-sucedido!", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
                     finish()

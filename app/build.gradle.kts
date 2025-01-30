@@ -96,6 +96,11 @@ dependencies {
     // Logging Interceptor
     implementation ("com.squareup.okhttp3:logging-interceptor:4.10.0")
 
+    implementation ("com.auth0.android:jwtdecode:2.0.0")
+    implementation ("com.auth0:java-jwt:3.18.2")
+
+
+
 
 
 }

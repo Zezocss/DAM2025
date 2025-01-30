@@ -5,7 +5,7 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ReceitasActivity">
 
     <!-- Conteúdo Principal -->
     <LinearLayout
@@ -14,8 +14,7 @@
         android:orientation="vertical"
         android:background="@color/white">
 
-
-    <!-- Título -->
+        <!-- Título e Botão para abrir o menu -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -23,7 +22,7 @@
             android:gravity="center_vertical"
             android:padding="10dp">
 
-            <!-- Botão para abrir o menu -->
+            <!-- Botão para abrir o menu lateral -->
             <ImageButton
                 android:id="@+id/open_menu_button"
                 android:layout_width="60dp"
@@ -33,7 +32,7 @@
                 android:background="?attr/selectableItemBackground"
                 android:padding="8dp" />
 
-            <!-- Título -->
+            <!-- Título da tela -->
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -43,65 +42,60 @@
                 android:textSize="31sp"
                 android:paddingStart="15dp"
                 tools:ignore="HardcodedText" />
-
-
         </LinearLayout>
 
-
-    <!-- CardView para SearchView -->
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="12dp"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="6dp">
-
-        <SearchView
-            android:id="@+id/search_view"
+        <!-- CardView para SearchView -->
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:iconifiedByDefault="false"
-            android:background="@drawable/search"
-            android:queryHint="Procure receitas" />
-    </androidx.cardview.widget.CardView>
+            android:layout_margin="12dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="6dp">
 
-    <!-- RecyclerView para a primeira lista -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_main_category"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="12dp"
-        tools:itemCount="1"
-        tools:listitem="@layout/maindesign1" />
+            <SearchView
+                android:id="@+id/search_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:iconifiedByDefault="false"
+                android:background="@drawable/search"
+                android:queryHint="Procure receitas" />
+        </androidx.cardview.widget.CardView>
 
-    <!-- Título para categorias -->
-    <TextView
-        android:id="@+id/tvCategory"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="12dp"
-        android:text="Categorias"
-        android:textColor="@color/black"
-        android:textSize="24sp" />
+        <!-- RecyclerView para a primeira lista -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_main_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            tools:itemCount="1"
+            tools:listitem="@layout/maindesign1" />
 
-    <!-- RecyclerView para a segunda lista -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_sub_category"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="12dp"
-        tools:itemCount="1"
-        tools:listitem="@layout/maindesign2" />
+        <!-- Título para categorias -->
+        <TextView
+            android:id="@+id/tvCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:text="Categorias"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
 
-</LinearLayout>
+        <!-- RecyclerView para a segunda lista -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_sub_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            tools:itemCount="1"
+            tools:listitem="@layout/maindesign2" />
+    </LinearLayout>
+
+    <!-- Menu Lateral -->
     <com.google.android.material.navigation.NavigationView
-    android:id="@+id/nav_view"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:layout_gravity="start"
-    app:menu="@menu/nav_menu"
-    app:headerLayout="@layout/nav_header" />
-
-        </androidx.drawerlayout.widget.DrawerLayout>
-
-
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:menu="@menu/nav_menu"
+        app:headerLayout="@layout/nav_header" />
+</androidx.drawerlayout.widget.DrawerLayout>

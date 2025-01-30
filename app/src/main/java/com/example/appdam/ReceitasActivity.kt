@@ -71,9 +71,12 @@ class ReceitasActivity : BaseActivity(), EasyPermissions.RationaleCallbacks, Eas
                 }
                 R.id.nav_logout -> {
                     val sharedPref = getSharedPreferences("user_prefs", MODE_PRIVATE)
-                    sharedPref.edit().clear().apply()
+                    val editor = sharedPref.edit()
+
+                    editor.remove("auth_token") // Remova apenas o token
+                    editor.apply()
                     Toast.makeText(this, "Logout realizado com sucesso!", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, MainActivity::class.java))
+                    startActivity(Intent(this, LoginActivity::class.java))
                     finish()
                 }
             }

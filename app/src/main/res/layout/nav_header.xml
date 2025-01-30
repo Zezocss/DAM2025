@@ -10,7 +10,7 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="60dp"
         android:layout_height="60dp"/>
-    
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,19 +20,14 @@
         android:text="Robin"
         android:textColor="@color/black"
         android:textStyle="bold"/>
-    
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16dp"
-        android:text="robin@gmail.com"/>
-        
+
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="30dp"/>
 
 
-        
+
 
 </LinearLayout>

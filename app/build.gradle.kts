@@ -59,6 +59,9 @@ dependencies {
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.2.0")
     implementation("androidx.annotation:annotation:1.6.0")
+    implementation("androidx.camera:camera-core:1.4.1")
+    implementation("androidx.camera:camera-lifecycle:1.4.1")
+    implementation("androidx.camera:camera-view:1.4.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
@@ -98,7 +101,7 @@ dependencies {
 
     implementation ("com.auth0.android:jwtdecode:2.0.0")
     implementation ("com.auth0:java-jwt:3.18.2")
-
+    implementation("androidx.camera:camera-camera2:1.4.1")
 
 
 

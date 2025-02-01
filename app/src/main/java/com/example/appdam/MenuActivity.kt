@@ -10,6 +10,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.example.appdam.databinding.ActivityMainBinding
 import com.example.appdam.utils.SharedPreferencesHelper
 import com.google.android.material.navigation.NavigationView
+import com.example.appdam.receitasuser.ListaReceitaActivity
 
 class MenuActivity : AppCompatActivity() {
 
@@ -48,7 +49,7 @@ class MenuActivity : AppCompatActivity() {
                     startActivity(Intent(this, ReceitasActivity::class.java))
                 }
                 R.id.nav_comentarios -> {
-                    startActivity(Intent(this, ReceitasActivity::class.java))
+                    startActivity(Intent(this, ListaReceitaActivity::class.java))
                 }
                 R.id.nav_info -> {
                     startActivity(Intent(this, ReceitasActivity::class.java))

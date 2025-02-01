@@ -48,17 +48,31 @@
             android:screenOrientation="locked"
             android:exported="true" />
 
-
         <activity
             android:name=".ReceitasActivity"
             android:screenOrientation="locked"
             android:exported="true" />
 
-
         <!-- DetailActivity -->
         <activity
             android:name=".DetailActivity"
             android:screenOrientation="locked" />
+
+
+        <activity
+            android:name=".receitasuser.AddReceitaActivity"
+            android:screenOrientation="locked"
+            android:exported="true" />
+
+        <activity
+            android:name=".receitasuser.EditReceitaActivity"
+            android:screenOrientation="locked"
+            android:exported="true" />
+
+        <activity
+            android:name=".receitasuser.ListaReceitaActivity"
+            android:screenOrientation="locked"
+            android:exported="true" />
 
     </application>
 </manifest>

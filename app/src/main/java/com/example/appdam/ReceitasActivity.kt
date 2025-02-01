@@ -33,7 +33,7 @@ import pub.devrel.easypermissions.EasyPermissions
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-
+import com.example.appdam.receitasuser.ListaReceitaActivity
 class ReceitasActivity : BaseActivity(), EasyPermissions.RationaleCallbacks, EasyPermissions.PermissionCallbacks {
     private var READ_STORAGE_PERM = 123
 
@@ -64,7 +64,7 @@ class ReceitasActivity : BaseActivity(), EasyPermissions.RationaleCallbacks, Eas
                     Toast.makeText(this, "Já está na página de receitas!", Toast.LENGTH_SHORT).show()
                 }
                 R.id.nav_comentarios -> {
-                    startActivity(Intent(this, ReceitasActivity::class.java))
+                    startActivity(Intent(this, ListaReceitaActivity::class.java))
                 }
                 R.id.nav_info -> {
                     startActivity(Intent(this, ReceitasActivity::class.java))

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sobre a Aplicação"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:paddingBottom="16dp" />
+
+    <TextView
+        android:id="@+id/tvTeam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Elementos do Grupo:\n- José Pereira (23374)\n- Tiago Ferreira (23412)"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvLibraries"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bibliotecas Externas Usadas:\n- Retrofit\n- Glide\n- Gson\n- NÃO ESQUECER ADICIONAR TODAS\nAS BIBLIOTECAS UTILIZADAS"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp" />
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Voltar"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"/>
+
+
+
+</LinearLayout>

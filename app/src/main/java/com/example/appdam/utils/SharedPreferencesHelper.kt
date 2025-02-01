@@ -9,6 +9,7 @@ class SharedPreferencesHelper(context: Context) {
         context.getSharedPreferences("login_prefs", Context.MODE_PRIVATE)
 
     companion object {
+
         private const val TOKEN_KEY = "token"
         private const val USERNAME_KEY = "userName"
         private const val EMAIL_KEY = "email"

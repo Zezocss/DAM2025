@@ -6,13 +6,14 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
+
 @RestController
 @RequestMapping("/receitas")
 class ReceitaController(private val receitaService: ReceitaService) {
 
     @GetMapping
-    fun listarReceitasPorUsuario(@RequestParam username: String): ResponseEntity<List<Receita>> {
-        val receitas = receitaService.listarReceitasPorUsername(username)
+    fun listarReceitasPorUtilizador(@RequestParam username: String): ResponseEntity<List<Receita>> {
+        val receitas = receitaService.listarReceitasPorUtilizador(username)
         return ResponseEntity.ok(receitas)
     }
 

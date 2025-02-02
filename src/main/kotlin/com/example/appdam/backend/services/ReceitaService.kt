@@ -4,10 +4,11 @@ import com.example.appdam.backend.models.Receita
 import com.example.appdam.backend.repositories.ReceitaRepository
 import org.springframework.stereotype.Service
 
+// ReceitaService.kt
 @Service
 class ReceitaService(private val receitaRepository: ReceitaRepository) {
 
-    fun listarReceitasPorUsername(username: String): List<Receita> {
+    fun listarReceitasPorUtilizador(username: String): List<Receita> {
         return receitaRepository.findByUsername(username)
     }
 
@@ -21,7 +22,7 @@ class ReceitaService(private val receitaRepository: ReceitaRepository) {
         }
 
         if (receitaExistente.username != novaReceita.username) {
-            throw IllegalArgumentException("Você não tem permissão para atualizar esta receita!")
+            throw IllegalArgumentException("Não tem permissão para atualizar esta receita!")
         }
 
         receitaExistente.titulo = novaReceita.titulo
@@ -38,7 +39,7 @@ class ReceitaService(private val receitaRepository: ReceitaRepository) {
         }
 
         if (receita.username != username) {
-            throw IllegalArgumentException("Você não tem permissão para eliminar esta receita!")
+            throw IllegalArgumentException("Não tem permissão para eliminar esta receita!")
         }
 
         receitaRepository.delete(receita)

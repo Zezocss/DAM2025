@@ -16,7 +16,7 @@ data class Receita(
 
     @Column(columnDefinition = "TEXT", nullable = false)
     var preparo: String = "",
-
+    @Column(columnDefinition = "TEXT", nullable = true)
     var fotourl: String? = null,
 
     var username: String = "" // O 'username' será enviado diretamente no corpo da requisição

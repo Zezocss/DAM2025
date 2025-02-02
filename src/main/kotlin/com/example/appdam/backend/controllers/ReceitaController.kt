@@ -44,4 +44,4 @@ fun criarReceita(@RequestBody receita: Receita): ResponseEntity<Receita> {
         receitaService.eliminarReceita(id, username)
         return ResponseEntity.noContent().build()
     }
-}
+

@@ -10,46 +10,33 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/receitas")
 class ReceitaController(private val receitaService: ReceitaService) {
 
-
-        @GetMapping
-    fun listarTodasReceitas(): ResponseEntity<List<Receita>> {
-        val receitas = receitaService.listarTodasReceitas()
+    @GetMapping
+    fun listarReceitasPorUsuario(@RequestParam username: String): ResponseEntity<List<Receita>> {
+        val receitas = receitaService.listarReceitasPorUsername(username)
         return ResponseEntity.ok(receitas)
     }
 
-    // Criar uma nova receita
     @PostMapping
-    fun criarReceita(
-        @RequestBody receita: Receita // Recebe os dados da receita, incluindo o username
-    ): ResponseEntity<Receita> {
-        println("DEBUG: Dados da receita recebidos: $receita")
-        val username = receita.username // O username é parte do corpo da requisição
-        println("DEBUG: Username associado à receita: $username")
-
-        // Salva a receita no banco de dados, associando o username
+    fun criarReceita(@RequestBody receita: Receita): ResponseEntity<Receita> {
         val novaReceita = receitaService.criarReceita(receita)
-
         return ResponseEntity.status(HttpStatus.CREATED).body(novaReceita)
     }
 
-    // Atualizar uma receita
     @PutMapping("/{id}")
     fun atualizarReceita(
-        @PathVariable id: Long, 
+        @PathVariable id: Long,
         @RequestBody novaReceita: Receita
     ): ResponseEntity<Receita> {
         val receitaAtualizada = receitaService.atualizarReceita(id, novaReceita)
         return ResponseEntity.ok(receitaAtualizada)
     }
 
-    // Excluir uma receita
     @DeleteMapping("/{id}")
-    fun deletarReceita(
-        @PathVariable id: Long
+    fun eliminarReceita(
+        @PathVariable id: Long,
+        @RequestParam username: String
     ): ResponseEntity<Void> {
-        receitaService.deletarReceita(id)
+        receitaService.eliminarReceita(id, username)
         return ResponseEntity.noContent().build()
-
-        
     }
 }

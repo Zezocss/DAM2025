@@ -21,3 +21,5 @@ data class Categoria(
     @TypeConverters(CategoriaConverter::class)
     val categories: List<CategoriaItens>? = null
 )
+
+

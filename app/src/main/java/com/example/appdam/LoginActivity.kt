@@ -29,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
 
         sharedPreferencesHelper = SharedPreferencesHelper(this)
 
-        // Verificar se o token já está armazenado
+        // Se o utilizador já estiver autenticado, redireciona para a MainActivity
         val token = sharedPreferencesHelper.getToken()
         if (!token.isNullOrEmpty()) {
             Toast.makeText(this, "Bem vindo de Volta", Toast.LENGTH_SHORT).show()
@@ -43,6 +43,7 @@ class LoginActivity : AppCompatActivity() {
         buttonLogin = findViewById(R.id.buttonLogin)
         buttonRegister = findViewById(R.id.buttonRegister)
 
+        // Botão de Login
         buttonLogin.setOnClickListener {
             val username = editTextUsername.text.toString()
             val password = editTextPassword.text.toString()
@@ -54,12 +55,14 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+        // Botão para ir para o Registo
         buttonRegister.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
     }
 
+    // Função para autenticar o utilizador
     private fun fazerLogin(username: String, password: String) {
         val loginRequest = LoginRequest(username, password)
         RetrofitAuth.instance.loginUser(loginRequest).enqueue(object : Callback<LoginResponse> {

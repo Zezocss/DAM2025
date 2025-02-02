@@ -42,6 +42,7 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
+    // Regista um novo utilizador na API
     private fun registerUser(firstName: String, lastName: String, email: String, username: String, password: String) {
         val registerRequest = RegisterRequest(firstName, lastName, email, username, password)
 

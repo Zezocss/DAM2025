@@ -1,5 +1,6 @@
 package com.example.appdam.entidades
 
+
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -20,4 +21,6 @@ class Prato (
     val pratosItens: List<PratosItens>? = null
 
 )
+
+
 

@@ -7,7 +7,7 @@ class RetrofitClient {
 
     companion object {
 
-
+        // URL base da API para buscar os dados dos pratos
         private var retrofit: Retrofit? = null
         private val BASE_URL = "https://www.themealdb.com/api/json/v1/1/"
         val retrofitInstance: Retrofit

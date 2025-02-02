@@ -37,13 +37,13 @@ class DetailActivity : BaseActivity() {
         getSpecificItem(id!!)
 
         imgToolbarBtnBack.setOnClickListener {
-            finish() // return to parent
+            finish() // Voltar para a atividade anterior
 
         }
 
     }
 
-
+    // Vai buscar os detalhes do prato específico na API
     private fun getSpecificItem(id:String) {
         val service = RetrofitClient.retrofitInstance!!.create(GetDataService::class.java)
         val call = service.getSpecificItem(id)
@@ -58,7 +58,7 @@ class DetailActivity : BaseActivity() {
                 call: Call<PratoResponse>,
                 response: Response<PratoResponse>
             ) {
-
+// Carrega a imagem com o Glide
                 Glide.with(this@DetailActivity).load(response.body()!!.meals[0].strMealThumb).into(imgItem)
 
 
@@ -67,7 +67,7 @@ class DetailActivity : BaseActivity() {
                 tvIngredients.text = response.body()!!.meals[0].strMeal
 
 
-                // display on a table
+                // Monta a lista de ingredientes
                 var ingredient = "${response.body()!!.meals[0].strIngredient1}      ${response.body()!!.meals[0].strMeasure1}\n" +
                         "${response.body()!!.meals[0].strIngredient2}      ${response.body()!!.meals[0].strMeasure2}\n" +
                         "${response.body()!!.meals[0].strIngredient3}      ${response.body()!!.meals[0].strMeasure3}\n" +

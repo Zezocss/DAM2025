@@ -22,19 +22,22 @@ class SharedPreferencesHelper(context: Context) {
         sharedPreferences.edit().putString(TOKEN_KEY, token).apply()
     }
 
+    //obtem o token armazenado
     fun getToken(): String? {
         return sharedPreferences.getString(TOKEN_KEY, null)
     }
 
-    // Limpar o token
+    // Limpar o token, util para o Logout
     fun clearToken() {
         sharedPreferences.edit().remove(TOKEN_KEY).apply()
     }
 
+        //guarda username
     fun saveUserName(userName: String) {
         sharedPreferences.edit().putString(USERNAME_KEY, userName).apply()
     }
 
+    //obtem o username
     fun getUserName(): String? {
         return sharedPreferences.getString(USERNAME_KEY, null)
     }

@@ -66,7 +66,7 @@ class ReceitasActivity : BaseActivity() {
             true
         }
 
-        // Inicializa os RecyclerViews e carrega os dados
+        // Inicialiwza os RecyclerVies e carrega os dados
         initializeRecyclerViews()
         getCategorias()
 
@@ -82,7 +82,7 @@ class ReceitasActivity : BaseActivity() {
         }
     }
 
-    // Listener para cliques nos pratos
+    // Listener para os cliques nos pratos na interface
     private val onClickedSubItens = object : SubCategoryAdapter.onItemClickListener {
         override fun onClicked(id: String) {
             val intent = Intent(this@ReceitasActivity, DetailActivity::class.java)
@@ -102,7 +102,7 @@ class ReceitasActivity : BaseActivity() {
         rvSubCategory.adapter = subCategoryAdapter
     }
 
-    // Faz a requisição para buscar categorias
+    // Faz a requisição para ir buscar as categorias
     private fun getCategorias() {
         val service = RetrofitClient.retrofitInstance.create(GetDataService::class.java)
         val call = service.getCategoryList()
@@ -133,7 +133,7 @@ class ReceitasActivity : BaseActivity() {
         })
     }
 
-    // Faz a requisição para buscar pratos de uma categoria
+    // Faz a requisição para ir buscar os pratos de uma categoria
     private fun getPratos(categoriaName: String) {
         val service = RetrofitClient.retrofitInstance.create(GetDataService::class.java)
         val call = service.getMealList(categoriaName)

@@ -17,7 +17,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlin.coroutines.CoroutineContext
 
-
+// Classe base que todas as outras atividades podem estender para usar o menu lateral
 open class BaseActivity : AppCompatActivity(), CoroutineScope {
 
 
@@ -104,7 +104,7 @@ open class BaseActivity : AppCompatActivity(), CoroutineScope {
         }
     }
 
-    // Permitir que o botão "hambúrguer" controle o menu
+    // Permitir que o botão controle o menu
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (drawerToggle.onOptionsItemSelected(item)) {
             return true

@@ -5,5 +5,5 @@ data class ReceitaRequest(
     val fotourl: String?,
     val ingredientes: String,
     val preparo: String,
-    val username: String
+    val username: String// Nome do utilizador associado à receita
 )

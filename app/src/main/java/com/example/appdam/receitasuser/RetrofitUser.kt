@@ -7,6 +7,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import java.util.concurrent.TimeUnit
 
 object RetrofitUser {
+    // URL base da API onde estao as receitas
     private const val BASE_URL = "https://wonderful-ambition-production.up.railway.app/"
 
     private val logging = HttpLoggingInterceptor().apply {
@@ -24,7 +25,7 @@ object RetrofitUser {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(client)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create()) // Converte JSON em objetos Kotlin
             .build()
             .create(UserApiService::class.java)
     }

@@ -68,7 +68,7 @@ class ListaReceitaActivity : BaseActivity() {
     }
 
     private fun carregarReceitas() {
-        // Obter o nome do utilizador das preferências partilhadas
+        // Obter o nome do utilizador das shared preferences
         val username = SharedPreferencesHelper(this).getUserName()
 
         // Verificar se o nome do utilizador é válido

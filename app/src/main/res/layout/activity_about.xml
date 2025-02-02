@@ -57,7 +57,31 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Bibliotecas Externas Usadas:\n- Retrofit\n- Glide\n- Gson\n- NÃO ESQUECER ADICIONAR TODAS\nAS BIBLIOTECAS UTILIZADAS"
+            android:text="Bibliotecas Externas Usadas:\n
+- AndroidX Core KTX\n
+- AndroidX AppCompat\n
+- Material Design Components\n
+- ConstraintLayout\n
+- AndroidX Annotation\n
+- CameraX (Core, Lifecycle, View, Camera2)\n
+- CircleImageView\n
+- RoundedImageView\n
+- Scalable Size Unit (SSP)\n
+- Scalable Size Unit (SDP)\n
+- Room Database (Runtime, Compiler, KTX)\n
+- EasyPermissions\n
+- Kotlin Coroutines Core\n
+- Retrofit\n
+- Retrofit Converter-Gson\n
+- OkHttp Logging Interceptor\n
+- Glide\n
+- Glide Compiler\n
+- Auth0 JWT Decode\n
+- Java JWT (Auth0)\n
+- JUnit\n
+- AndroidX Test JUnit\n
+- Espresso Core\n"
+
             android:textSize="16sp"
             android:layout_marginTop="16dp" />
 

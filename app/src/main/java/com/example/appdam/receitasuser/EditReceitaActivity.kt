@@ -19,7 +19,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class EditReceitaActivity : AppCompatActivity() {
-
+    // Campos onde o utilizador edita os dados da receita
     private lateinit var etTituloEdit: EditText
     private lateinit var ivFotoReceitaEdit: ImageView
     private lateinit var etIngredientesEdit: EditText
@@ -51,7 +51,7 @@ class EditReceitaActivity : AppCompatActivity() {
         if (idReceita != -1L) {
             carregarReceita(idReceita)
         }
-
+// Configura os botões
         btnSalvarEdit.setOnClickListener {
             atualizarReceita()
         }
@@ -92,7 +92,7 @@ class EditReceitaActivity : AppCompatActivity() {
         })
     }
 
-
+    // Atualiza os dados da receita na API
     private fun atualizarReceita() {
         val receitaAtualizada = receitaAtual?.let {
             ReceitaRequest(
@@ -108,7 +108,7 @@ class EditReceitaActivity : AppCompatActivity() {
             Toast.makeText(this, "Erro: receita inválida!", Toast.LENGTH_SHORT).show()
             return
         }
-
+        // Envia a atualização para a API
         receitaAtual?.id?.let { id ->
             RetrofitUser.instance.updateReceita(id, receitaAtualizada)
                 .enqueue(object : Callback<Void> {
@@ -130,7 +130,7 @@ class EditReceitaActivity : AppCompatActivity() {
         }
     }
 
-
+    // Elimina a receita da API
     private fun excluirReceita() {
         val username = SharedPreferencesHelper(this).getUserName()
 

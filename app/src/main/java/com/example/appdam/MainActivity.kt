@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         // Inicializa o SharedPreferencesHelper
         sharedPreferencesHelper = SharedPreferencesHelper(this)
 
-        // Verifica se o usuário está logado
+        // Verifica se o utilizador está logado
         val token = sharedPreferencesHelper.getToken()
         if (!token.isNullOrEmpty()) {
             // Se o token existe, exibe uma mensagem de boas-vindas

@@ -13,14 +13,15 @@ class SharedPreferencesHelper(context: Context) {
         private const val TOKEN_KEY = "token"
         private const val USERNAME_KEY = "userName"
         private const val EMAIL_KEY = "email"
+
     }
+
 
     // Salvar o token
     fun saveToken(token: String) {
         sharedPreferences.edit().putString(TOKEN_KEY, token).apply()
     }
 
-    // Recuperar o token
     fun getToken(): String? {
         return sharedPreferences.getString(TOKEN_KEY, null)
     }
@@ -30,23 +31,11 @@ class SharedPreferencesHelper(context: Context) {
         sharedPreferences.edit().remove(TOKEN_KEY).apply()
     }
 
-    // Salvar o nome do usuário
     fun saveUserName(userName: String) {
         sharedPreferences.edit().putString(USERNAME_KEY, userName).apply()
     }
 
-    // Recuperar o nome do usuário
     fun getUserName(): String? {
         return sharedPreferences.getString(USERNAME_KEY, null)
-    }
-
-    // Salvar o email do usuário
-    fun saveUserEmail(email: String) {
-        sharedPreferences.edit().putString(EMAIL_KEY, email).apply()
-    }
-
-    // Recuperar o email do usuário
-    fun getUserEmail(): String? {
-        return sharedPreferences.getString(EMAIL_KEY, null)
     }
 }

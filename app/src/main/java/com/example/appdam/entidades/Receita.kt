@@ -9,8 +9,8 @@ data class Receita(
     @PrimaryKey(autoGenerate = true)
     val id: Long?,
     val titulo: String,
-    val fotourl: String?,
+    var fotourl: String? = null,
     val ingredientes: String,
     val preparo: String,
-    @SerializedName("user_id") val userId: String
+    @SerializedName("username") val username: String
 )

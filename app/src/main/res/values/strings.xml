@@ -14,7 +14,7 @@
 
         <!-- Strings para a tela de Register -->
         <string name="register_title">Registar-se</string>
-        <string name="register">Registrar</string>
+        <string name="register">Registar</string>
 
         <string name="hint_first_name">Primeiro Nome</string>
         <string name="hint_last_name">Último Nome</string>

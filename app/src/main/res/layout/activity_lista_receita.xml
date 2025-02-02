@@ -1,27 +1,78 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mainContainer"
+    android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.appdam.receitasuser.ListaReceitaActivity">
 
-    <!-- RecyclerView para listar receitas -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvReceitas"
+    <!-- Conteúdo Principal -->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
 
-    <!-- Botão flutuante para adicionar receita -->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAddReceita"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/white">
+
+            <!-- Cabeçalho com Botão de Menu e Título -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="10dp">
+
+                <!-- Botão para abrir o menu lateral -->
+                <ImageButton
+                    android:id="@+id/open_menu_button"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/btnmenu"
+                    android:contentDescription="Abrir Menu"
+                    android:background="?attr/selectableItemBackground"
+                    android:padding="8dp" />
+
+                <!-- Título da tela -->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Todas as receitas"
+                    android:textColor="@color/black"
+                    android:textSize="31sp"
+                    android:paddingStart="15dp"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+
+            <!-- RecyclerView para listar as receitas -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvReceitas"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp" />
+        </LinearLayout>
+
+        <!-- FloatingActionButton para adicionar receitas -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAddReceita"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:src="@drawable/btn_add"
+            android:contentDescription="Adicionar receita" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <!-- Menu Lateral -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="16dp"
-        android:src="@drawable/btn_add"
-        android:contentDescription="Adicionar receita" />
-
-</RelativeLayout>
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:menu="@menu/nav_menu"
+        app:headerLayout="@layout/nav_header" />
+</androidx.drawerlayout.widget.DrawerLayout>

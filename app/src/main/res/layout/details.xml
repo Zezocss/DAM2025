@@ -103,7 +103,7 @@
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
                         android:padding="@dimen/_10sdp"
-                        android:text="Category name"
+                        android:text="Detalhes"
                         android:id="@+id/tvCategory"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_15ssp" />
@@ -125,7 +125,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingStart="@dimen/_10sdp"
-                android:text="Ingredients"
+                android:text="Ingredientes"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_15ssp" />
 
@@ -145,7 +145,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/_10ssp"
-                        android:textColor="@color/grey"
+                        android:textColor="@color/black"
                         android:textStyle="bold"
                         android:paddingTop="@dimen/_10sdp"
                         android:paddingStart="@dimen/_5sdp"
@@ -158,7 +158,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingStart="@dimen/_10sdp"
-                android:text="Instructions"
+                android:text="Instruções"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_15ssp" />
 
@@ -166,7 +166,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_10sdp"
-                app:cardBackgroundColor="@color/grey"
+                app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="@dimen/_10sdp"
                 app:cardElevation="@dimen/_5sdp">
                 <LinearLayout
@@ -179,7 +179,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/_10ssp"
-                        android:textColor="@color/grey"
+                        android:textColor="@color/black"
                         android:textStyle="bold"
                         android:paddingTop="@dimen/_10sdp"
                         android:paddingStart="@dimen/_5sdp"

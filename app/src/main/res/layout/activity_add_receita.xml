@@ -13,6 +13,20 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <ImageButton
+            android:id="@+id/imgToolbarBtnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/_12sdp"
+            android:paddingTop="@dimen/_5sdp"
+            android:paddingEnd="@dimen/_4sdp"
+            android:paddingBottom="@dimen/_8sdp"
+            android:layout_margin="@dimen/_1sdp"
+            android:layout_gravity="start"
+            android:background="@drawable/btn_bg2"
+            android:src="@drawable/backbt"
+            android:contentDescription="Voltar" />
+
         <!-- Título da Receita -->
         <EditText
             android:id="@+id/etTitulo"

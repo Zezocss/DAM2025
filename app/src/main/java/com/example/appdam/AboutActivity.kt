@@ -1,22 +1,23 @@
 package com.example.appdam
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import android.widget.ImageButton
+import com.example.appdam.BaseActivity
+import com.example.appdam.R
 
-class AboutActivity : AppCompatActivity() {
+class AboutActivity : BaseActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_about)
 
-        val btnBack = findViewById<Button>(R.id.btnBack)
-        btnBack.setOnClickListener {
-            val intent = Intent(this, ReceitasActivity::class.java)
-            startActivity(intent)
+        // Configura o layout e o menu lateral
+        setupDrawer(R.layout.activity_about)
+
+        // Configura o botão para abrir o menu lateral
+        val openMenuButton: ImageButton = findViewById(R.id.open_menu_button)
+        openMenuButton.setOnClickListener {
+            drawerLayout.openDrawer(GravityCompat.START)
         }
     }
-
-
-
 }

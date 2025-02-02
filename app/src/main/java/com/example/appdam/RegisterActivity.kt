@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.appdam.auth.RetrofitAuth
@@ -22,6 +23,13 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
 
         sharedPreferencesHelper = SharedPreferencesHelper(this)
+
+        val buttonBack: ImageButton = findViewById(R.id.buttonBack)
+        buttonBack.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
+
 
         val registerButton = findViewById<Button>(R.id.buttonRegister)
         registerButton.setOnClickListener {
@@ -42,11 +50,11 @@ class RegisterActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     // Salvar o nome completo
                     sharedPreferencesHelper.saveUserName("$firstName $lastName")
-                    Toast.makeText(this@RegisterActivity, "Registro bem-sucedido!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@RegisterActivity, "Registo bem-sucedido!", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
                     finish()
                 } else {
-                    Toast.makeText(this@RegisterActivity, "Falha no registro!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@RegisterActivity, "Altere seu UserName!", Toast.LENGTH_SHORT).show()
                 }
             }
 

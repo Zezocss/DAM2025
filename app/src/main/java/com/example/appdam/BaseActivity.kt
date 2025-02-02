@@ -5,9 +5,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
+import com.example.appdam.receitasuser.ListaReceitaActivity
+import com.example.appdam.utils.SharedPreferencesHelper
 import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -33,7 +36,7 @@ open class BaseActivity : AppCompatActivity(), CoroutineScope {
         job = Job()
     }
 
-    // Configuração do menu lateral (chamado pelas subclasses)
+    // Configuração do menu lateral
     protected fun setupDrawer(layoutId: Int) {
         setContentView(layoutId)
 
@@ -49,8 +52,24 @@ open class BaseActivity : AppCompatActivity(), CoroutineScope {
         drawerLayout.addDrawerListener(drawerToggle)
         drawerToggle.syncState()
 
+
         // Mostrar o botão do menu na ActionBar
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+
+        val headerView = navView.getHeaderView(0)
+        val tvUserName = headerView.findViewById<TextView>(R.id.user_name)
+        // Recuperar o nome do usuário usando o SharedPreferencesHelper
+        val sharedPreferencesHelper = SharedPreferencesHelper(this)
+        val userName = sharedPreferencesHelper.getUserName()
+
+        // Atualizar o texto no cabeçalho
+        if (!userName.isNullOrEmpty()) {
+            tvUserName.text = "Bem-vindo, $userName"
+        } else {
+            tvUserName.text = "Bem-vindo!"
+        }
+
 
         // Configuração do menu lateral
         navView.setNavigationItemSelectedListener { menuItem ->
@@ -58,20 +77,25 @@ open class BaseActivity : AppCompatActivity(), CoroutineScope {
                 R.id.nav_receitas -> {
                     startActivity(Intent(this, ReceitasActivity::class.java))
                 }
-                R.id.nav_comentarios -> {
-                    startActivity(Intent(this, ReceitasActivity::class.java))
+                R.id.nav_suasreceitas -> {
+                    startActivity(Intent(this, ListaReceitaActivity::class.java))
                 }
                 R.id.nav_info -> {
-                    startActivity(Intent(this, ReceitasActivity::class.java))
+                    startActivity(Intent(this, AboutActivity::class.java))
                 }
                 R.id.nav_logout -> {
-                    val sharedPref = getSharedPreferences("user_prefs", MODE_PRIVATE)
-                    val editor = sharedPref.edit()
+                    val sharedPreferencesHelper = SharedPreferencesHelper(this)
 
-                    editor.remove("auth_token") // Remova apenas o token
-                    editor.apply()
-                    Toast.makeText(this, "Logout realizado com sucesso!", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, LoginActivity::class.java))
+// Remover o token e o nome do utilizador
+                    sharedPreferencesHelper.clearToken()
+                    sharedPreferencesHelper.saveUserName("") // Opcional: limpar também o nome do utilizador
+
+                    Toast.makeText(this, "Logout Realizado com Sucesso", Toast.LENGTH_SHORT).show()
+
+// Redirecionar para a tela de login e impedir que volte ao ReceitasActivity mesmo que tente voltar
+                    val intent = Intent(this, LoginActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
                     finish()
                 }
             }

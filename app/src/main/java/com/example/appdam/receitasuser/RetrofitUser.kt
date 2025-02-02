@@ -1,28 +1,29 @@
-package com.example.appdam.receitasuser
+package com.example.appdam.api
 
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import java.util.concurrent.TimeUnit
 
 object RetrofitUser {
-    private const val USER_URL = "https://postgres-production-2f54.up.railway.app/"
+    private const val BASE_URL = "https://wonderful-ambition-production.up.railway.app/"
 
-    // Interceptor para logs detalhados
-    private val loggingInterceptor = HttpLoggingInterceptor().apply {
+    private val logging = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
     }
 
-    // Cliente HTTP configurado com logging
-    private val httpClient = OkHttpClient.Builder()
-        .addInterceptor(loggingInterceptor)
+    private val client = OkHttpClient.Builder()
+        .connectTimeout(30, TimeUnit.SECONDS)
+        .readTimeout(30, TimeUnit.SECONDS)
+        .writeTimeout(30, TimeUnit.SECONDS)
+        .addInterceptor(logging)
         .build()
 
-    // Instância Retrofit
     val instance: UserApiService by lazy {
         Retrofit.Builder()
-            .baseUrl(USER_URL)
-            .client(httpClient)
+            .baseUrl(BASE_URL)
+            .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(UserApiService::class.java)

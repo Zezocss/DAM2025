@@ -1,44 +1,75 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    tools:context=".AboutActivity">
 
-    <TextView
-        android:id="@+id/tvTitle"
+    <!-- Conteúdo Principal -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Sobre a Aplicação"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:paddingBottom="16dp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-    <TextView
-        android:id="@+id/tvTeam"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Elementos do Grupo:\n- José Pereira (23374)\n- Tiago Ferreira (23412)"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        <!-- Cabeçalho com botão de menu e título -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="16dp">
 
-    <TextView
-        android:id="@+id/tvLibraries"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Bibliotecas Externas Usadas:\n- Retrofit\n- Glide\n- Gson\n- NÃO ESQUECER ADICIONAR TODAS\nAS BIBLIOTECAS UTILIZADAS"
-        android:textSize="16sp"
-        android:layout_marginTop="16dp" />
+            <!-- Botão de menu lateral -->
+            <ImageButton
+                android:id="@+id/open_menu_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
 
-    <Button
-        android:id="@+id/btnBack"
+                android:src="@drawable/btnmenu"
+                android:contentDescription="Abrir Menu"
+                android:background="?attr/selectableItemBackground"
+                android:padding="8dp" />
+
+            <!-- Título da tela -->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingEnd="44dp"
+                android:text="Sobre a Aplicação"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <!-- Informações do Grupo -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Elementos do Grupo:\n- José Pereira (23374)\n- Tiago Ferreira (23412)"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <!-- Bibliotecas Usadas -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bibliotecas Externas Usadas:\n- Retrofit\n- Glide\n- Gson\n- NÃO ESQUECER ADICIONAR TODAS\nAS BIBLIOTECAS UTILIZADAS"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp" />
+
+
+    </LinearLayout>
+
+    <!-- Menu Lateral -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Voltar"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"/>
-
-
-
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:menu="@menu/nav_menu"
+        app:headerLayout="@layout/nav_header" />
+</androidx.drawerlayout.widget.DrawerLayout>

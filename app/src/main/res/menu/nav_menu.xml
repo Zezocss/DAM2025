@@ -16,13 +16,13 @@
 
     </item>
 
-    <item android:title="Adicionar Comentario">
+    <item android:title="Minhas Receitas">
         <menu>
 
             <item
-                android:id="@+id/nav_comentarios"
+                android:id="@+id/nav_suasreceitas"
                 android:icon="@drawable/comentario"
-                android:title="Comentarios"/>
+                android:title="Ver Minhas Receitas"/>
 
         </menu>
 

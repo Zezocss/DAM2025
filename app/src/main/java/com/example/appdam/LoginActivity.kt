@@ -7,16 +7,20 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.auth0.android.jwt.JWT
+import com.example.appdam.auth.RetrofitAuth
 import com.example.appdam.models.LoginRequest
 import com.example.appdam.models.LoginResponse
 import com.example.appdam.utils.SharedPreferencesHelper
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import com.example.appdam.auth.RetrofitAuth
 
 class LoginActivity : AppCompatActivity() {
 
+    private lateinit var editTextUsername: EditText
+    private lateinit var editTextPassword: EditText
+    private lateinit var buttonLogin: Button
+    private lateinit var buttonRegister: Button // Adicionado para o botão Registrar-se
     private lateinit var sharedPreferencesHelper: SharedPreferencesHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,57 +29,66 @@ class LoginActivity : AppCompatActivity() {
 
         sharedPreferencesHelper = SharedPreferencesHelper(this)
 
-        val loginButton = findViewById<Button>(R.id.buttonLogin)
-        loginButton.setOnClickListener {
-            val username = findViewById<EditText>(R.id.editTextUsername).text.toString()
-            val password = findViewById<EditText>(R.id.editTextPassword).text.toString()
-            loginUser(username, password)
+        // Verificar se o token já está armazenado
+        val token = sharedPreferencesHelper.getToken()
+        if (!token.isNullOrEmpty()) {
+            Toast.makeText(this, "Bem vindo de Volta", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+            return
         }
 
-        val registerButton = findViewById<Button>(R.id.buttonRegister)
-        registerButton.setOnClickListener {
-            goToRegister()
+        editTextUsername = findViewById(R.id.editTextUsername)
+        editTextPassword = findViewById(R.id.editTextPassword)
+        buttonLogin = findViewById(R.id.buttonLogin)
+        buttonRegister = findViewById(R.id.buttonRegister)
+
+        buttonLogin.setOnClickListener {
+            val username = editTextUsername.text.toString()
+            val password = editTextPassword.text.toString()
+
+            if (username.isNotEmpty() && password.isNotEmpty()) {
+                fazerLogin(username, password)
+            } else {
+                Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        buttonRegister.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
         }
     }
 
-    private fun loginUser(username: String, password: String) {
+    private fun fazerLogin(username: String, password: String) {
         val loginRequest = LoginRequest(username, password)
-
         RetrofitAuth.instance.loginUser(loginRequest).enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 if (response.isSuccessful) {
-                    val loginResponse = response.body()
-                    val token = loginResponse?.token
-
+                    val token = response.body()?.token
                     if (token != null) {
                         sharedPreferencesHelper.saveToken(token)
 
-                        // Decodificar token para extrair o nome
                         try {
                             val jwt = JWT(token)
-                            val userName =
-                                jwt.getClaim("username").asString() ?: "Usuário desconhecido"
+                            val userName = jwt.getClaim("username").asString() ?: "Usuário desconhecido"
                             sharedPreferencesHelper.saveUserName(userName)
 
                             Toast.makeText(this@LoginActivity, "Login bem-sucedido!", Toast.LENGTH_SHORT).show()
                             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                             finish()
                         } catch (e: Exception) {
-                            Toast.makeText(this@LoginActivity, "Erro ao processar token!", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@LoginActivity, "Erro!", Toast.LENGTH_SHORT).show()
                         }
                     }
                 } else {
-                    Toast.makeText(this@LoginActivity, "Credenciais inválidas!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@LoginActivity, "Verifica os teus dados", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                Toast.makeText(this@LoginActivity, "Erro: ${t.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@LoginActivity, "Erro de conexão: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
-    }
-
-    private fun goToRegister() {
-        startActivity(Intent(this, RegisterActivity::class.java))
     }
 }

@@ -27,7 +27,7 @@
                 android:id="@+id/open_menu_button"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/food"
+                android:src="@drawable/btnmenu"
                 android:contentDescription="Abrir Menu"
                 android:background="?attr/selectableItemBackground"
                 android:padding="8dp" />

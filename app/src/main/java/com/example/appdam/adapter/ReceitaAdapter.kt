@@ -31,7 +31,7 @@ class ReceitaAdapter(
         holder.tvTitulo.text = receita.titulo
 
         // Carregar a foto, se disponível
-        if (!receita.fotourl.isNullOrEmpty()) { // Alterado para fotourl
+        if (!receita.fotourl.isNullOrEmpty()) {
             Glide.with(holder.itemView.context)
                 .load(receita.fotourl)
                 .into(holder.ivFoto)
@@ -39,14 +39,13 @@ class ReceitaAdapter(
             holder.ivFoto.setImageResource(R.drawable.ic_launcher_background) // Placeholder
         }
 
+        // Configurando clique no item
         holder.itemView.setOnClickListener {
             onItemClick(receita)
         }
     }
-
     override fun getItemCount() = listaReceitas.size
 
-    // Função para atualizar a lista no adapter e notificar
     fun atualizarLista(novaLista: List<Receita>) {
         listaReceitas = novaLista
         notifyDataSetChanged()

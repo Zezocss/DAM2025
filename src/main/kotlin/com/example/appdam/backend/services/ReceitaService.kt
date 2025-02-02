@@ -28,7 +28,7 @@ class ReceitaService(private val receitaRepository: ReceitaRepository) {
         receitaExistente.titulo = novaReceita.titulo
         receitaExistente.ingredientes = novaReceita.ingredientes
         receitaExistente.preparo = novaReceita.preparo
-        receitaExistente.fotourl = novaReceita.fotourl
+        receitaExistente.fotourl = novaReceita.fotourl ?: ""
 
         return receitaRepository.save(receitaExistente)
     }

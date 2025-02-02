@@ -17,10 +17,14 @@ class ReceitaController(private val receitaService: ReceitaService) {
         return ResponseEntity.ok(receitas)
     }
 
-    @PostMapping
-    fun criarReceita(@RequestBody receita: Receita): ResponseEntity<Receita> {
-        val novaReceita = receitaService.criarReceita(receita)
-        return ResponseEntity.status(HttpStatus.CREATED).body(novaReceita)
+
+   @PostMapping
+fun criarReceita(@RequestBody receita: Receita): ResponseEntity<Receita> {
+    println("Recebendo receita: ${receita.titulo}, Foto: ${receita.fotourl?.length ?: "SEM IMAGEM"}")
+    val novaReceita = receitaService.criarReceita(receita)
+    return ResponseEntity.status(HttpStatus.CREATED).body(novaReceita)
+}
+
     }
 
     @PutMapping("/{id}")
@@ -40,4 +44,4 @@ class ReceitaController(private val receitaService: ReceitaService) {
         receitaService.eliminarReceita(id, username)
         return ResponseEntity.noContent().build()
     }
-}
+

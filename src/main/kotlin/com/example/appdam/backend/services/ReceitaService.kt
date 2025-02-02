@@ -7,10 +7,9 @@ import org.springframework.stereotype.Service
 @Service
 class ReceitaService(private val receitaRepository: ReceitaRepository) {
 
-     // Novo método para buscar todas as receitas do banco
-    fun listarTodasReceitas(): List<Receita> {
-        return receitaRepository.findAll()
-    }
+ fun listarReceitasPorUser(username: String): List<Receita> {
+    return receitaRepository.findByUsername(username)
+}
 
     // Criar uma receita
     fun criarReceita(receita: Receita): Receita {

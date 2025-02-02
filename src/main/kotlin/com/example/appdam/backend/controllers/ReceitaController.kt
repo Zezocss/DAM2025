@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.*
 class ReceitaController(private val receitaService: ReceitaService) {
 
 
-        @GetMapping
-    fun listarTodasReceitas(): ResponseEntity<List<Receita>> {
-        val receitas = receitaService.listarTodasReceitas()
-        return ResponseEntity.ok(receitas)
-    }
+    // Adicionar um novo endpoint para buscar receitas pelo username
+    @GetMapping("/user/{username}")
+    fun listarReceitasPorUser(@PathVariable username: String): ResponseEntity<List<Receita>> {
+    val receitas = receitaService.listarReceitasPorUser(username)
+    return ResponseEntity.ok(receitas)
+}
+
 
     // Criar uma nova receita
     @PostMapping
